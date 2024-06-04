@@ -8,7 +8,7 @@ const message = document.querySelector(".message");
 const playAgainButton = document.querySelector(".play-again");
 
 let word = "magnolia"; 
-const guessedLetters = [];
+let guessedLetters = [];
 let remainingGuesses = 8; 
 
 const getWord = async function(){
@@ -33,8 +33,6 @@ const dummy = function(word){
     }
     wordInProgress.innerText = dummyLetters.join(""); 
 }; 
-
-dummy(word);
 
 
 // AddEventListener
@@ -137,3 +135,17 @@ const startOver = function(){
     playAgainButton.classList.remove("hide");
 
 };
+
+playAgainButton.addEventListener("click", function(){
+    message.classList.remove("win");
+    guessedLetters = [];
+    remainingGuesses = 8;
+    span.innerText = `${remainingGuesses} guesses`;
+    guessedLettersItem.innerHTML= "";
+    message.innerText = "";
+    getWord();
+    guessButton.classList.remove("hide");  
+    remainingGuessesElement.classList.remove("hide");  
+    guessedLettersItem.classList.remove("hide");  
+    playAgainButton.classList.add("hide");
+});
